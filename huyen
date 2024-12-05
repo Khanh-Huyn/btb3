@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class btvnt3 : Form
+    {
+        private object lvi;
+        private object listView;
+        private object lvStudent;
+
+        public btvnt3()
+        {
+            InitializeComponent();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            }
+        
+
+        private void Thêm_Click(object sender, EventArgs e)
+        {
+            // tao 1 dong
+
+            ListViewItem lvi = new ListViewItem(txtLast.Text);
+            lvi.SubItems.Add(txtFist.Text);
+            lvi.SubItems.Add(txtPhone.Text);
+            // đưa dòng dữ liệu lên listview
+            listView1.Items.Add(lvi);
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            
+        {
+            if (listView1.SelectedItems.Count > 0) // Kiểm tra có mục nào được chọn không
+            {
+                listView1.Items.Remove(listView1.SelectedItems[0]); // Xóa mục được chọn
+                MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một mục để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+    }
+
+
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0) // Kiểm tra có mục nào được chọn không
+            {
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+                selectedItem.Text = txtLast.Text; // Cập nhật cột Last Name
+                selectedItem.SubItems[1].Text = txtFist.Text; // Cập nhật cột First Name
+                selectedItem.SubItems[2].Text = txtPhone.Text; // Cập nhật cột Phone
+                MessageBox.Show("Đã sửa thành công!", "Thông báo", MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một mục để sửa!", "Thông báo", MessageBoxButtons.OK,
+                                                                            MessageBoxIcon.Warning);
+            }
+        }
+
+        private void lvStudent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0) // Kiểm tra có mục nào được chọn không
+            {
+                ListViewItem selected = listView1.SelectedItems[0];
+                txtLast.Text = selected.Text; // Hiển thị Last Name
+                txtFist.Text = selected.SubItems[1].Text; // Hiển thị First Name
+                txtPhone.Text = selected.SubItems[2].Text; // Hiển thị Phone
+            }
+        }
+
+        
+    }
+}
+    
+            
+    
+
